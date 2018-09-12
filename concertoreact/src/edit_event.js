@@ -58,8 +58,8 @@ export default class EditEvent extends React.Component {
                         <h1>Edit Event</h1>
                         <h6>Place : {this.props.event.event}</h6>
                         <h6>Date : {this.props.event.date}</h6>
-                        <h6>Date : {this.props.event.band_name}</h6>
-                        <form id='editForm' onSubmit={this.handleEditForm.bind(this)} method='post'>
+                        <h6>Band Name : {this.props.event.band_name}</h6>
+                        <form id='editForm' className='vertial-form' onSubmit={this.handleEditForm.bind(this)} method='post'>
                             <input type='text'name='band_name' placeholder='band name' />
                             <input type='text'name='event' placeholder='event' />
                             <input type='text'name='place'placeholder='place' />
