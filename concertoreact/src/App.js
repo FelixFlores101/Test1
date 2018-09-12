@@ -43,6 +43,10 @@ class App extends Component {
     this.getBands()
   }
 
+  updateEvents() {
+    this.getBands()
+  }
+
   renderEvents() {
     if(this.state.events.length >= 1) {
       this.state.events.map((event) => {
@@ -60,7 +64,7 @@ class App extends Component {
     let that = this
     let renderEvents = this.state.events.map(function(event) {
       return (
-        <Item key={event.id} event={event} handleDelete={that.handleDelete.bind(that)} handleUpdate={that.handleUpdate.bind(this)} />
+        <Item key={event.id} event={event} updateEvents={that.updateEvents.bind(that)} handleDelete={that.handleDelete.bind(that)} handleUpdate={that.handleUpdate.bind(this)} />
       )
     })
     return (

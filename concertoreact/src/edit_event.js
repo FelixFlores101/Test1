@@ -1,21 +1,82 @@
-// import React from 'react'
+import React from 'react'
 
 export default class EditEvent extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            modal: false
+        }
+    }
 
-    render() {
-        return (
-            <div className='modal-container'>
-                <div className='modal'>
-                    <h1>Edit This Event </h1>
-                    <form>
-                        <input name='band_name' placeholder='band name'/>
-                        <input name='event' placeholder='event'/>
-                        <input name='place'/>
-                        <input name='date'/>
-                        <input type='submit'/>
-                    </form>
+    componentWillMount() {
+        console.log(this.props)
+    }
+
+    componentWillReceieveProps(nextProps) {
+        console.log('next props', nextProps)
+        this.setState({
+            modal: nextProps.modal,
+            event: nextProps.event
+        })
+    }
+
+    handleEditForm(event) {
+        event.preventDefault()
+        let xhr = new XMLHttpRequest()
+        xhr.open('put', `http://localhost:3000/events/${this.props.event.id}`, true)
+        let form = document.querySelector('#editForm')
+        console.log(form, form.band_name)
+        let newEvent;
+        newEvent = {
+            band_name: form.band_name.value,
+            event: form.event.value,
+            date: form.date.value,
+            place: form.place.value
+        }
+        xhr.onload = function() {
+            console.log(xhr.responseText)
+            this.closeModal()
+        }.bind(this)
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+        xhr.send(JSON.stringify({event: newEvent}))
+    }
+
+    closeModal() {
+        console.log('closing modal')
+        this.setState({
+            modal: false
+        }, function() {
+            this.props.closeModal()
+        })
+    }
+
+    renderEvent() {
+        if(this.props.modal === true) {
+            return (
+                <div className={`modal-container modal-${this.props.event.id}`}>
+                    <div className='modal'>
+                        <h1>Edit This Event {this.props.event.band_name}</h1>
+                        <form id='editForm' onSubmit={this.handleEditForm.bind(this)} method='post'>
+                            <input type='text'name='band_name' placeholder='band name' />
+                            <input type='text'name='event' placeholder='event' />
+                            <input type='text'name='place'placeholder='place' />
+                            <input type='text'name='date' placeholder='date' />
+                            <input type='submit'/>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            )
+        } else {
+            return (
+                <div>Hidden modal</div>
+            )
+        }
+    }
+    render() {
+        
+        
+        return (
+                <div>{this.renderEvent()}</div>
         )
     }
 }
