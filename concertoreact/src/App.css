@@ -87,6 +87,7 @@ body {
 }
 
 .modal {
+  padding: 0px 2rem;
   background-color: white;
   border: 1px solid black;
   height: 300px;
@@ -96,4 +97,22 @@ body {
   height: 300px;
   margin-left:auto;
   margin-right: auto;
+}
+
+body {
+  padding: 0px 2rem
+}
+
+input {
+  width: 200px;
+  height: 45px;
+  padding: 0px .7rem;
+  margin: 0px .2rem;
+  font-size: .9rem;
+}
+
+input[type='submit'] {
+  background-color: #2f3d44;
+  color: white;
+  height: 45px;
 }

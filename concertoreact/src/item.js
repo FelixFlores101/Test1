@@ -74,7 +74,7 @@ export default class Item extends React.Component {
                 <div className='comments'>
                     <h5 className='comment-title'>Add A Comment</h5>
                     <form>
-                        <textarea placeholder='Type your comment out' maxLength='450'></textarea>
+                        <textarea rows="10" cols="20" placeholder='Type your comment out' maxLength='450'></textarea>
                     </form>
                 </div>
                 <EditEvent modal={this.state.modal} event={this.props.event} closeModal={this.closeModal.bind(this)}/>

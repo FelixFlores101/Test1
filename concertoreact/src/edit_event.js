@@ -55,7 +55,10 @@ export default class EditEvent extends React.Component {
             return (
                 <div className={`modal-container modal-${this.props.event.id}`}>
                     <div className='modal'>
-                        <h1>Edit This Event {this.props.event.band_name}</h1>
+                        <h1>Edit Event</h1>
+                        <h6>Place : {this.props.event.event}</h6>
+                        <h6>Date : {this.props.event.date}</h6>
+                        <h6>Date : {this.props.event.band_name}</h6>
                         <form id='editForm' onSubmit={this.handleEditForm.bind(this)} method='post'>
                             <input type='text'name='band_name' placeholder='band name' />
                             <input type='text'name='event' placeholder='event' />
@@ -63,12 +66,13 @@ export default class EditEvent extends React.Component {
                             <input type='text'name='date' placeholder='date' />
                             <input type='submit'/>
                         </form>
+                        <button onClick={this.closeModal.bind(this)}>close</button>
                     </div>
                 </div>
             )
         } else {
             return (
-                <div>Hidden modal</div>
+                <div></div>
             )
         }
     }
